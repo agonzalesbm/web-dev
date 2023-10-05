@@ -9,6 +9,8 @@ services:
       MONGO_INITDB_DATABASE: todo
     ports:
       - "27017:27017"
+    volumes:
+      - ./init-script.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
 
   mongo-express:
     image: mongo-express
