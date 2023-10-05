@@ -47,7 +47,7 @@ public class TodoTaskController : ControllerBase
             return NotFound();
         }
 
-        await _todoTaskService.UpdateTask(todoTask, id);
+        await _todoTaskService.UpdateTask(updateTodoTask, id);
 
         return NoContent();
     }
