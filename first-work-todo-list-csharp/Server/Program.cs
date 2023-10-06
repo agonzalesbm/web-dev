@@ -10,12 +10,23 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        // Configure CORS
+
+        builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                policy =>
+                                {
+                                    policy.WithOrigins("http://localhost:5173");
+                                });
+            });
+
         // Add services to the container.
 
         builder.Services.AddControllers();
 
         builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
-        
+
         // moongo service
         builder.Services.Configure<TodoListDataBaseSettings>(builder.Configuration.GetSection("MongoDB"));
 
@@ -33,7 +44,10 @@ public class Program
             app.UseSwaggerUI();
         }
 
+
         app.UseHttpsRedirection();
+
+        app.UseCors();
 
         app.UseAuthorization();
 
