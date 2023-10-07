@@ -1,27 +1,11 @@
 import { useState, useEffect } from "react";
-import ToDoServiceAPI from "./features/todoList/ToDoServiceAPI";
+import ToDoList from "./features/todoList/ToDoList";
 
 function App() {
-  const [taskList, setTaskList] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      ToDoServiceAPI.getTasks()
-        .then((response) => {
-          setTaskList(response.data);
-        })
-        .catch((error) => console.log(error));
-    }
-    fetchData();
-  }, []);
-
   return (
     <>
       <div>
-        <h1>Task List</h1>
-        {taskList.map((task) => (
-          <p key={task.Id}>{task.NameTask}</p>
-        ))}
+        <ToDoList />
       </div>
     </>
   );
