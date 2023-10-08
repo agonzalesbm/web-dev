@@ -5,8 +5,6 @@ import NewTaskInput from "./NewTaskInput";
 import Card from "../card/Card";
 import { Box } from "@mui/material";
 
-const urlGet = "http://localhost:5091/api/TodoTask";
-
 function ToDoList() {
   const [taskList, setTaskList] = useState([]);
 
@@ -19,13 +17,12 @@ function ToDoList() {
       toDoServiceAPI
         .getTasks()
         .then((response) => {
-          console.log(response.data);
           setTaskList(response.data);
         })
         .catch((error) => console.log(error));
     }
     fetchData();
-  }, []);
+  }, [taskList]);
 
   return (
     <>
@@ -34,7 +31,7 @@ function ToDoList() {
           <h1>Task List</h1>
           <NewTaskInput />
           {taskList.map((task) => (
-              <Card name={task.NameTask} description={task.Description} key={task.Id}></Card>
+              <Card name={task.NameTask} description={task.Description} key={task.Id} id={task.Id}></Card>
           ))}
         </div>
       </Box>
