@@ -3,6 +3,7 @@ namespace Todo.Services;
 using Todo.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using Todo.Exceptions;
 
 public class TodoTaskService
 {
@@ -19,7 +20,14 @@ public class TodoTaskService
 
     public async Task<TodoTask?> GetTask(string id) => await _tasksCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-    public async Task CreateTask(TodoTask todoTask) => await _tasksCollection.InsertOneAsync(todoTask);
+    public async Task CreateTask(TodoTask todoTask)
+    {
+        if (todoTask.NameTask.Length == 0 || todoTask.Description.Length == 0)
+        {
+            throw new EmptyTaskException();
+        }
+        await _tasksCollection.InsertOneAsync(todoTask);
+    }
 
     public async Task UpdateTask(TodoTask todoTask, string id) => await _tasksCollection.ReplaceOneAsync(x => x.Id == id, todoTask);
 
