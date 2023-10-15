@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5091/api/TodoTask";
+const API_BASE_URL = "https://todo-agonzalesbm.azurewebsites.net";
 
 class ToDoServiceAPI {
   getTasks = () => {
-    return axios.get(API_BASE_URL);
+    return axios.get(API_BASE_URL + "/");
   };
 
   getTaskById = (id) => {

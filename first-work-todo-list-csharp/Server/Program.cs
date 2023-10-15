@@ -14,10 +14,10 @@ public class Program
 
         builder.Services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
+                options.AddPolicy("all",
                                 policy =>
                                 {
-                                    policy.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod();
+                                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                                 });
             });
 
@@ -47,7 +47,7 @@ public class Program
 
         app.UseHttpsRedirection();
 
-        app.UseCors();
+        app.UseCors("all");
 
         app.UseAuthorization();
 

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("/")]
 public class TodoTaskController : ControllerBase
 {
     private readonly TodoTaskService _todoTaskService;
