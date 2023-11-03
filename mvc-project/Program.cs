@@ -1,7 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Todo.Models;
-using todo;
 using Todo.Services;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=TodoTask}/{action=Index}/{id?}");
 
 app.Run();

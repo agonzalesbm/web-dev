@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Todo.Models;
-using todo;
 using Todo.Services;
 
 namespace mvc_project.Controllers
@@ -112,7 +105,7 @@ namespace mvc_project.Controllers
 
             await _context.RemoveTask(id);
 
-            return NoContent();
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: TodoTask/Delete/5
@@ -132,10 +125,5 @@ namespace mvc_project.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        // private bool TodoTaskExists(string id)
-        // {
-        //   return (_context.TodoTask?.Any(e => e.Id == id)).GetValueOrDefault();
-        // }
     }
 }
